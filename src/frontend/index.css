@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* MealOps AI - Dark Tech-Medical Design System */
+    --background: 0.12 0.008 220;
+    --foreground: 0.93 0.012 210;
+
+    --card: 0.16 0.01 218;
+    --card-foreground: 0.93 0.012 210;
+
+    --popover: 0.19 0.012 216;
+    --popover-foreground: 0.93 0.012 210;
+
+    /* Teal-cyan primary */
+    --primary: 0.72 0.16 185;
+    --primary-foreground: 0.10 0.015 218;
+
+    --secondary: 0.20 0.012 216;
+    --secondary-foreground: 0.82 0.012 210;
+
+    --muted: 0.18 0.008 218;
+    --muted-foreground: 0.55 0.015 210;
+
+    --accent: 0.22 0.016 215;
+    --accent-foreground: 0.88 0.012 210;
+
+    /* Red destructive */
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.97 0.005 0;
+
+    --border: 0.28 0.012 215;
+    --input: 0.24 0.012 216;
+    --ring: 0.72 0.16 185;
+
+    /* Chart palette: teal, amber, red, purple, green */
+    --chart-1: 0.72 0.16 185;
+    --chart-2: 0.78 0.16 68;
+    --chart-3: 0.62 0.22 25;
+    --chart-4: 0.65 0.18 290;
+    --chart-5: 0.68 0.17 155;
+
+    /* Sidebar */
+    --sidebar: 0.10 0.01 220;
+    --sidebar-foreground: 0.88 0.012 210;
+    --sidebar-primary: 0.72 0.16 185;
+    --sidebar-primary-foreground: 0.10 0.01 220;
+    --sidebar-accent: 0.18 0.012 216;
+    --sidebar-accent-foreground: 0.88 0.012 210;
+    --sidebar-border: 0.22 0.012 215;
+    --sidebar-ring: 0.72 0.16 185;
+
+    /* Status semantic colors */
+    --status-ok: 0.68 0.17 155;
+    --status-warning: 0.78 0.16 68;
+    --status-critical: 0.62 0.22 25;
+    --status-info: 0.67 0.15 220;
+    --status-idle: 0.55 0.012 215;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-1 ring-offset-background;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(var(--muted-foreground));
+  }
+}
+
+@layer utilities {
+  .text-status-ok { color: oklch(var(--status-ok)); }
+  .text-status-warning { color: oklch(var(--status-warning)); }
+  .text-status-critical { color: oklch(var(--status-critical)); }
+  .text-status-info { color: oklch(var(--status-info)); }
+  .text-status-idle { color: oklch(var(--status-idle)); }
+
+  .bg-status-ok { background-color: oklch(var(--status-ok) / 0.15); }
+  .bg-status-warning { background-color: oklch(var(--status-warning) / 0.15); }
+  .bg-status-critical { background-color: oklch(var(--status-critical) / 0.15); }
+  .bg-status-info { background-color: oklch(var(--status-info) / 0.15); }
+  .bg-status-idle { background-color: oklch(var(--status-idle) / 0.15); }
+
+  .border-status-ok { border-color: oklch(var(--status-ok) / 0.4); }
+  .border-status-warning { border-color: oklch(var(--status-warning) / 0.4); }
+  .border-status-critical { border-color: oklch(var(--status-critical) / 0.4); }
+  .border-status-info { border-color: oklch(var(--status-info) / 0.4); }
+
+  .glow-primary {
+    box-shadow: 0 0 20px oklch(var(--primary) / 0.3);
+  }
+  .glow-critical {
+    box-shadow: 0 0 16px oklch(var(--status-critical) / 0.4);
+  }
+
+  .font-mono-data {
+    font-family: "Geist Mono", monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .card-surface {
+    background: oklch(var(--card));
+    border: 1px solid oklch(var(--border));
+    border-radius: var(--radius);
+  }
+
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+}
